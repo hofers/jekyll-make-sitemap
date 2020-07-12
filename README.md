@@ -23,10 +23,6 @@ end
 ## Configuration
 In `_config.yml`
 ``` yaml
-...
-plugins:
-  - jekyll-make-sitemap
-...
 jekyll-make-sitemap:
   pages: true       # Default: true
   posts: true       # Default: true
