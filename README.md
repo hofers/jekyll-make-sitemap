@@ -21,12 +21,19 @@ end
 ## Configuration
 In `_config.yml`
 ``` yaml
+...
+plugins:
+  - jekyll-make-sitemap
+...
 jekyll-make-sitemap:
   pages: true       # Default: true
   posts: true       # Default: true
   collections: 
    - collection_1   # include items from collection_1 in sitemap
 ```
+
+## Exceptions
+To exclude a page or post, assign it the `sitemap-exclude` tag
 
 ## License
 
