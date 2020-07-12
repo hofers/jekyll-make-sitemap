@@ -1,5 +1,4 @@
 require 'jekyll'
-require "jekyll/make/sitemap/version"
 
 module Jekyll 
   module Make
