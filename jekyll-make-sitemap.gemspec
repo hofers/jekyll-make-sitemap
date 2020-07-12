@@ -1,4 +1,4 @@
-require_relative 'lib/jekyll/make/sitemap/version'
+require_relative 'lib/jekyll/make-sitemap/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-make-sitemap"
