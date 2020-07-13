@@ -5,14 +5,12 @@ module Jekyll
     class Sitemap
       class Error < StandardError; end
       class << self
-        def generate(site, payload)
-          if payload.jekyll.environment == "production"
-            default_config = { 'pages' => true, 'posts' => true }
-            file = File.open("sitemap.txt", "w+")
-            config = site.config.has_key?("jekyll-make-sitemap") ? site.config["jekyll-make-sitemap"] : default_config
+        def generate(site, payload, file)
+          default_config = { 'pages' => true, 'posts' => true, 'environments' => ['production'] }
+          config = site.config.has_key?("jekyll-make-sitemap") ? site.config["jekyll-make-sitemap"] : default_config
+          if config['environments'].include?(payload.jekyll.environment)
             baseurl = site.config["url"]
             collections = config.has_key?("collections") ? ["collections"] : []
-
             unless config.has_key?("pages") && config["pages"] == false
               payload.site.pages.each do |page| process(file, page, baseurl) end
             end
@@ -22,8 +20,6 @@ module Jekyll
             collections.each do |col|
               site.collections[col].docs.each do |post| process(file, post, baseurl) end
             end
-
-            file.close()
           end
         end
         def process(file, doc, baseurl)
@@ -36,10 +32,16 @@ module Jekyll
   end
 end
 
-Jekyll::Hooks.register :site, :after_init do |site|
-  File.new("sitemap.txt", "w")
+Jekyll::Hooks.register :site, :after_reset do |site|
+  File.new("sitemap.txt", "w") if !File.exist?("sitemap.txt")
 end
 
-Jekyll::Hooks.register :site, :pre_render do |site, payload|
-  Jekyll::Make::Sitemap.generate(site, payload)
+Jekyll::Hooks.register :site, :post_render do |site, payload|
+  file = File.open("sitemap.txt", "w+")
+  Jekyll::Make::Sitemap.generate(site, payload, file)
+  file.close
+end
+
+Jekyll::Hooks.register :site, :post_write do |site|
+  File.delete("sitemap.txt")
 end
