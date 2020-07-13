@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Sean Hofer"]
   spec.email         = ["me@seanhofer.com"]
 
-  spec.summary       = "A Jekyll hook for generating a sitemap.txt in production builds"
-  spec.description   = "A Jekyll hook for generating a sitemap.txt in production builds"
+  spec.summary       = "A Jekyll hook plugin for generating a sitemap.txt file during the Jekyll build process."
+  spec.description   = "A Jekyll hook plugin for generating a sitemap.txt file during the Jekyll build process."
   spec.homepage      = "https://github.com/hofers/jekyll-make-sitemap"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
