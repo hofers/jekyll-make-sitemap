@@ -1,7 +1,7 @@
 # [jekyll-make-sitemap](https://rubygems.org/gems/jekyll-make-sitemap)
 [![Gem Version](https://badge.fury.io/rb/jekyll-make-sitemap.svg)](https://badge.fury.io/rb/jekyll-make-sitemap)
 
-jekyll-make-sitemap is a Jekyll hook plugin for generating a `sitemap.txt` file during the Jekyll build process. If you're interested in generating an XML sitemap I recommend checking out [jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap).
+A Jekyll hook plugin for generating a `sitemap.txt` file during the Jekyll build process. If you're interested in generating an XML sitemap I recommend checking out [jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap).
 
 This plugin includes all pages and posts by default. See the [Configuration](#Configuration) section for more on configuring your sitemap. 
 
