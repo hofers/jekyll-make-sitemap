@@ -7,8 +7,8 @@ module Jekyll
       class << self
         def generate(site, payload, file)
           default_config = { 'pages' => true, 'posts' => true, 'environments' => ['production'] }
-          config = site.config.has_key?("jekyll-make-sitemap") ? site.config["jekyll-make-sitemap"] : default_config
-          if config['environments'].include?(payload.jekyll.environment)
+          config = site.config.has_key?("jekyll-make-sitemap") ? default_config.merge(site.config["jekyll-make-sitemap"]) : default_config
+          if config["environments"].include?(payload.jekyll.environment)
             baseurl = site.config["url"]
             collections = config.has_key?("collections") ? config["collections"] : []
             unless config.has_key?("pages") && config["pages"] == false
