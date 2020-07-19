@@ -10,12 +10,22 @@ module Jekyll
           config = site.config.has_key?("jekyll-make-sitemap") ? site.config["jekyll-make-sitemap"] : default_config
           if config['environments'].include?(payload.jekyll.environment)
             baseurl = site.config["url"]
-            collections = config.has_key?("collections") ? ["collections"] : []
+            collections = config.has_key?("collections") ? config["collections"] : []
             unless config.has_key?("pages") && config["pages"] == false
               payload.site.pages.each do |page| process(file, page, baseurl) end
             end
             unless config.has_key?("posts") && config["posts"] == false
-              payload.site.posts.each do |post| process(file, post, baseurl) end
+              payload.site.posts.each do |post|
+                if !config["posts"].eql?(true)
+                  config["posts"].each do |cat|
+                    if post.data.has_key?("categories") && post.data["categories"].include?(cat)
+                      process(file, post, baseurl)
+                    end
+                  end
+                else
+                  process(file, post, baseurl) 
+                end
+              end
             end
             collections.each do |col|
               site.collections[col].docs.each do |post| process(file, post, baseurl) end

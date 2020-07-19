@@ -25,7 +25,8 @@ In `_config.yml`
 ``` yaml
 jekyll-make-sitemap:
   pages: true       # Default: true
-  posts: true       # Default: true
+  posts:            # Default: true
+   - category       # Categories of posts to include in sitemap; accepts true, false, or a list of categories
   environments:     # Default: ['production']
    - production 
    - development
